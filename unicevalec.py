@@ -26,6 +26,7 @@ class Unicevalec:
         self.odbijac = Odbijac(self.platno)
         self.unicevalka = Unicevalka(self.platno,350,812)
         self.zacetek = True
+        self.zacetna_tocka = self.platno.create_oval(345, 545, 355, 555)#####dodal zgolj za orientacijo
 
 
         #premiki za platno
@@ -74,15 +75,19 @@ class Unicevalec:
 
     def na_rob(self, event):
         '''v primeru, da z miško uidemo iz platna, se odbijač prestavi na ustrezni rob'''
+        #omejimo na levi rob
         if self.odbijac.sredina_odbijaca < self.sirina/2:
             self.odbijac.sredina_odbijaca = self.odbijac.odmik_odbijaca
+        #omejimo na desni rob
         else:
             self.odbijac.sredina_odbijaca = self.sirina - self.odbijac.odmik_odbijaca
+        #prestavimo odbijac
         self.platno.coords(self.odbijac.ID,
                            self.odbijac.sredina_odbijaca - self.odbijac.odmik_odbijaca,
                            820,
                            self.odbijac.sredina_odbijaca + self.odbijac.odmik_odbijaca,
                            840)
+        #ce smo na zacetku premikamo se unicevalko
         if self.zacetek == True:
             self.platno.coords(self.unicevalka.ID,
                                self.odbijac.sredina_odbijaca - self.unicevalka.polmer,
@@ -96,21 +101,28 @@ class Unicevalec:
         '''ob kliku izstreli žogico skozi točko (350, 550)'''
         x = self.unicevalka.x
         y = self.unicevalka.y
-        self.alfa = atan(abs(262)/abs(350 - x))
-        self.zacetek = False
-        dx = cos(radians(self.alfa))*self.unicevalka.hitrost
-        dy = sin(radians(self.alfa))*self.unicevalka.hitrost
-        dy = 10
-        dx = 10
-        print(dx, dy)
-        self.platno.coords(self.unicevalka.ID,
-                           (x - self.unicevalka.polmer - dx)*self.unicevalka.premik_x,
-                           (y - self.unicevalka.polmer - dy)*self.unicevalka.premik_y,
-                           (x + self.unicevalka.polmer - dx)*self.unicevalka.premik_x,
-                           (y + self.unicevalka.polmer - dy)*self.unicevalka.premik_y)
+        #alfa je kot med vodoravnico in tocko (350, 550)
+        if event != None: #####dodan if stavek
+            self.alfa = atan(abs(262)/abs(350 - x)) #####točko bi prestavil malo nižje
+            self.zacetek = False
+        dx = cos(self.alfa)*self.unicevalka.hitrost#####odstranil radiane saj
+        dy = sin(self.alfa)*self.unicevalka.hitrost#####atan vrne radiane < >
+        if (x - self.unicevalka.polmer - dx*self.unicevalka.premik_x) < 0:#####nasledni 4 if stavki so za odboj
+            self.unicevalka.premik_x *= -1
+        elif (x + self.unicevalka.polmer - dx*self.unicevalka.premik_x) > self.sirina:
+            self.unicevalka.premik_x *= -1
+        if (y - self.unicevalka.polmer - dy*self.unicevalka.premik_y) < 0:
+            self.unicevalka.premik_y *= -1
+        elif (y + self.unicevalka.polmer - dy*self.unicevalka.premik_y) > self.visina:#####spremeni posledico tega pogoja
+            self.unicevalka.premik_y *= -1
+        self.platno.coords(self.unicevalka.ID, #####spodaj sem premaknil zaklepaje ki so bili za dx oz. dy
+                           (x - self.unicevalka.polmer - dx*self.unicevalka.premik_x),
+                           (y - self.unicevalka.polmer - dy*self.unicevalka.premik_y),
+                           (x + self.unicevalka.polmer - dx*self.unicevalka.premik_x),
+                           (y + self.unicevalka.polmer - dy*self.unicevalka.premik_y))
         self.unicevalka.x = x - dx*self.unicevalka.premik_x
         self.unicevalka.y = y - dy*self.unicevalka.premik_y
-        self.platno.after(25, self.izstrel)
+        self.platno.after(20, self.izstrel)
 
 
 
