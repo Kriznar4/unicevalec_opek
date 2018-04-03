@@ -8,7 +8,8 @@ class Odbijac:
         self.ID = self.igra.platno.create_rectangle(self.sredina_odbijaca - self.odmik_odbijaca,
                                                     820,
                                                     self.sredina_odbijaca + self.odmik_odbijaca,
-                                                    840)
+                                                    840,
+                                                    fill='black')
 
         self.igra.platno.bind('<Motion>', self.premik_odbijaca)
 
