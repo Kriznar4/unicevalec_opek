@@ -4,7 +4,7 @@ class Odbijac:
     def __init__(self, igra):
         self.igra = igra
         self.sredina_odbijaca = 350
-        self.odmik_odbijaca = 50
+        self.odmik_odbijaca = 70
         self.ID = self.igra.platno.create_rectangle(self.sredina_odbijaca - self.odmik_odbijaca,
                                                     820,
                                                     self.sredina_odbijaca + self.odmik_odbijaca,

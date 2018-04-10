@@ -13,6 +13,7 @@ class Unicevalec:
         #splošne lastnosti
         self.sirina = 700
         self.visina = 900
+        self.igramo = False
 
         #ustvarimo lastnosti za začetni in koncni meni
         self.zacetni_meni = Frame(master, width=self.sirina, height=self.visina)
@@ -54,9 +55,18 @@ class Unicevalec:
     def zacetek(self, event):
         '''prehod z začetnega menija na igro'''
         #zapremo začetni meni
+        self.igramo = True
+        print(self.igramo)
         self.zacetni_meni.pack_forget()
         #odpremo platno
         self.platno.pack()
+
+    def konec(self):
+        '''konec igre'''
+        self.platno.pack_forget()
+        self.platno.delete('all')
+        self.igramo = False
+        self.koncni_meni.pack()
 
     def sledi_miski(self, event):
         '''Na začetku igre odbijac in uničevalka sledita miški, po izstrelu samo še odbijac'''

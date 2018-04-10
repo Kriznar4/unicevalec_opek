@@ -51,7 +51,10 @@ class Unicevalka:
         #alfa je kot med vodoravnico in tocko (350, 550)
         if event.x < self.igra.sirina/2:
             self.premik_x *= -1
-        self.alfa = atan(abs(262)/abs(350 - x)) #####točko bi prestavil malo nižje
+        if self.igra.odbijac.sredina_odbijaca == self.igra.sirina/2:
+            self.alfa = radians(90)
+        else:
+            self.alfa = atan(abs(262)/abs(350 - x)) #####točko bi prestavil malo nižje
         self.igra.zacetek = False
         self.dx = cos(self.alfa)*self.hitrost
         self.dy = sin(self.alfa)*self.hitrost
@@ -71,7 +74,8 @@ class Unicevalka:
             self.odboj_od_odbijaca()
         if self.y < 400:
             self.odboj_od_kamnov()
-        self.igra.platno.after(20, self.premikanje)
+        if self.igra.igramo:
+            self.igra.platno.after(20, self.premikanje)
 
     def odboj_od_sten(self):
         '''odbijanje zogice od vseh elementov'''
@@ -81,35 +85,22 @@ class Unicevalka:
         if (self.y - self.polmer - self.dy*self.premik_y) < 0:
             self.premik_y *= -1
         if (self.y + self.polmer - self.dy*self.premik_y) > self.igra.visina: #za konec igre žogica pade pod odbijača
-            self.igra.platno.pack_forget()
-            self.igra.koncni_meni.pack()
+            self.igra.konec()
 
     def odboj_od_odbijaca(self):
         '''ko se žogica dotakne odbijača se odbije'''
         sez_id = self.igra.platno.find_closest(self.x, self.y, halo=self.polmer)
+        if len(sez_id) == 0:
+            return
         if sez_id[0] != self.ID:
-            prejsni_x = self.x
-            prejsni_y = self.y
-            self.x += self.dx * self.premik_x
-            self.y += self.dy * self.premik_y
-            if self.igra.odbijac.sredina_odbijaca - self.igra.odbijac.odmik_odbijaca\
-                    <= prejsni_x <= \
-                            self.igra.odbijac.sredina_odbijaca + self.igra.odbijac.odmik_odbijaca:
-                self.premik_y *= -1
-                delez = (self.igra.odbijac.sredina_odbijaca + self.igra.odbijac.odmik_odbijaca - prejsni_x)\
-                        /self.igra.odbijac.odmik_odbijaca*2
-                self.alfa = delez*pi*14/3 + pi/3
+            if True or 790 <= self.y <= 810:
+                desni_rob =  self.igra.odbijac.sredina_odbijaca + self.igra.odbijac.odmik_odbijaca
+                delez = abs((desni_rob - self.x)/ (self.igra.odbijac.odmik_odbijaca*2))
+                self.alfa = radians(180 * delez)
+                self.premik_x = -1 #ker v premikanju odštevamo dx, je tu - 1
+                self.premik_y = 1
                 self.dx = cos(self.alfa) * self.hitrost
                 self.dy = sin(self.alfa) * self.hitrost
-            elif 790 <= prejsni_y <= 810:
-                self.premik_x *= - 1
-            else:
-                self.premik_y *= -1
-                self.premik_x *= - 1
-        #if self.igra.odbijac.sredina_odbijaca + self.igra.odbijac.odmik_odbijaca >= \
-        #    self.x >= \
-        #    self.igra.odbijac.sredina_odbijaca - self.igra.odbijac.odmik_odbijaca:
-        #    self.premik_y *= -1
 
     def odboj_od_kamnov(self):
         '''žogica se odbije od kamnov'''

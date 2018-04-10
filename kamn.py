@@ -8,6 +8,7 @@ class Kamn:
         self.visina_pol = dim[1]
         self.sredisce_x = sredisce[0]
         self.sredisce_y = sredisce[1]
+        self.st_zadetkov = 1
         self.ID = self.igra.platno.create_rectangle(self.sredisce_x - self.sirina_pol,
                                                     self.sredisce_y - self.visina_pol,
                                                     self.sredisce_x + self.sirina_pol,
@@ -17,5 +18,8 @@ class Kamn:
 
     def zadet(self, ind):
         '''kamen je zadet in se izbriše'''
-        self.igra.platno.delete(self.ID)
-        self.igra.kamni.pop(ind)
+        if self.st_zadetkov > 1:
+            self.st_zadetkov -= 1
+        else:
+            self.igra.platno.delete(self.ID)
+            self.igra.kamni.pop(ind)
