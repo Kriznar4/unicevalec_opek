@@ -23,3 +23,6 @@ class Kamn:
         else:
             self.igra.platno.delete(self.ID)
             self.igra.kamni.pop(ind)
+            if len(self.igra.kamni) == 0:
+                self.igra.zmaga = True
+                self.igra.konec()

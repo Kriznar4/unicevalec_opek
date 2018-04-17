@@ -11,7 +11,7 @@ class Unicevalka:
         self.y = 820 - self.polmer
         self.premik_x = 1
         self.premik_y = 1
-        self.hitrost = 7
+        self.hitrost = 17
         self.ID = self.igra.platno.create_oval(self.x - self.polmer,
                                      self.y - self.polmer,
                                      self.x + self.polmer,
