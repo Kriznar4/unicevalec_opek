@@ -76,6 +76,8 @@ class Unicevalka:
             self.odboj_od_kamnov()
         if self.igra.igramo:
             self.igra.platno.after(20, self.premikanje)
+        else:
+            self.igra.unici() #####uničimo nepotrebne elemente na koncu igre
 
     def odboj_od_sten(self):
         '''odbijanje zogice od vseh elementov'''

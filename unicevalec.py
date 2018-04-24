@@ -11,6 +11,7 @@ class Unicevalec:
     def __init__(self, master):
 
         #splošne lastnosti
+        self.master = master
         self.sirina = 700
         self.visina = 900
         self.igramo = False
@@ -35,32 +36,27 @@ class Unicevalec:
         Button(self.koncni_meni, image=self.restart, command=master.destroy, height=100, width=100).pack()
 
         #ustvarjanje lastnosti za platno
-        self.platno = Canvas(master, width = self.sirina, height =self.visina)
-        self.unicevalka = Unicevalka(self)
-        self.odbijac = Odbijac(self)
-        self.zacetek = True
-        self.kamni = []
+        # self.platno = Canvas(master, width = self.sirina, height =self.visina)
+        # self.unicevalka = Unicevalka(self)
+        # self.odbijac = Odbijac(self)
+        # self.zacetek = True
+        # self.kamni = []
+        #####preselil v funkcijo ustvarjanje objektov
 
         #ustvarjanje kamnov
         self.kamn_sirina_pol = 30
         self.kamn_visina_pol = 10
-        dim = (self.kamn_sirina_pol, self.kamn_visina_pol)
-        sredisce = [70 + self.kamn_sirina_pol, 40 + self.kamn_visina_pol]
-        for i in range(1, 2): #1, 8
-            for j in range(1, 2):#1, 10
-                self.kamni.append(Kamn(self, sredisce, 1, dim))
-                sredisce[0] = sredisce[0] + self.kamn_sirina_pol*2 + 5
-            sredisce[1] = sredisce[1] + self.kamn_visina_pol*2 + 5
-            sredisce[0] = 70 + self.kamn_sirina_pol
+
+        #####Ta del kode premaknil v funkcijo ustvarjanje kamnov
 
 
 
 
 
         #premiki za platno
-        self.platno.bind('<Leave>', self.na_rob)
-        self.platno.bind('<Button-1>', self.unicevalka.izstrel)
-        self.platno.bind('<Motion>', self.sledi_miski)
+        # self.platno.bind('<Leave>', self.na_rob)
+        # self.platno.bind('<Button-1>', self.unicevalka.izstrel)
+        # self.platno.bind('<Motion>', self.sledi_miski)
 
 
 
@@ -68,6 +64,7 @@ class Unicevalec:
         '''prehod z začetnega menija na igro'''
         #zapremo začetni meni
         self.igramo = True
+        self.ustvarjanje_objektov()
         self.zacetni_meni.pack_forget()
         self.koncni_meni.pack_forget()
         #odpremo platno
@@ -98,6 +95,37 @@ class Unicevalec:
             if kamn.ID == ID:
                 ind = self.kamni.index(kamn)
                 return kamn, ind
+
+    def ustvarjanje_kamnov(self):
+        '''Ustvari kamne na začetku igre'''
+        dim = (self.kamn_sirina_pol, self.kamn_visina_pol)
+        sredisce = [70 + self.kamn_sirina_pol, 40 + self.kamn_visina_pol]
+        for i in range(1, 8):  # 1, 8
+            for j in range(1, 10):  # 1, 10
+                self.kamni.append(Kamn(self, sredisce, 1, dim))
+                sredisce[0] = sredisce[0] + self.kamn_sirina_pol * 2 + 5
+            sredisce[1] = sredisce[1] + self.kamn_visina_pol * 2 + 5
+            sredisce[0] = 70 + self.kamn_sirina_pol
+
+    def ustvarjanje_objektov(self):
+        '''ustvari objekte na začetku igre'''
+        self.platno = Canvas(self.master, width=self.sirina, height=self.visina)
+        self.unicevalka = Unicevalka(self)
+        self.odbijac = Odbijac(self)
+        self.zacetek = True
+        self.kamni = []
+        self.ustvarjanje_kamnov()
+        self.ukazi_za_platno()
+
+    def ukazi_za_platno(self):
+        '''veže ukaze za platno z dogodki'''
+        self.platno.bind('<Leave>', self.na_rob)
+        self.platno.bind('<Button-1>', self.unicevalka.izstrel)
+        self.platno.bind('<Motion>', self.sledi_miski)
+
+    def unici(self):
+        '''na koncu igre unici vse nepotrebne elemente'''
+        self.platno.destroy()
 
 
 
