@@ -29,11 +29,11 @@ class Unicevalec:
         Button(self.zacetni_meni, image = self.izhod, command=master.destroy, height=100, width=100).pack()
 
         #končni frame
-        Label(self.koncni_meni, text='Uničevalec opek', bg='pink', anchor='center', font=("Courier", 44)).pack(fill=X)
-        Button(self.koncni_meni, text='Začni igro', command=self.zacetek, height=11, width=20,
+        self.napis = Label(self.koncni_meni, text=' ', bg='pink', anchor='center', font=("Courier", 44))
+        self.napis.pack(fill=X)
+        Button(self.koncni_meni, text='Poskusi ponovno', command=self.zacetek, height=11, width=20,
                font=("Courier", 44)).pack()
-        self.restart = PhotoImage(file='restart.gif')
-        Button(self.koncni_meni, image=self.restart, command=master.destroy, height=100, width=100).pack()
+        Button(self.koncni_meni, image=self.izhod, command=master.destroy, height=100, width=100).pack()
 
         #ustvarjanje lastnosti za platno
         # self.platno = Canvas(master, width = self.sirina, height =self.visina)
@@ -72,6 +72,10 @@ class Unicevalec:
 
     def konec(self):
         '''konec igre'''
+        if self.zmaga:
+            self.napis.config(text='Odlično!')
+        else:
+            self.napis.config(text='Zelo slabo!')
         self.platno.pack_forget()
         self.platno.delete('all')
         self.igramo = False
