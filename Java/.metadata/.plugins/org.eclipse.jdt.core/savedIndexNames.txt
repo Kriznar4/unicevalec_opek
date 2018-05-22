@@ -1,0 +1,3 @@
+INDEX VERSION 1.130+U:\prog2\Unièevalec opek\unicevalec_opek\Java\.metadata\.plugins\org.eclipse.jdt.core
+3416130426.index
+3772317483.index

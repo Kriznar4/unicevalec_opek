@@ -1,0 +1,15 @@
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+public class Platno extends JPanel  {
+	
+	public Platno() {
+		super();
+	}
+	
+	@Override
+    public Dimension getPreferredSize() {
+        return new Dimension(300, 300);
+	}
+}
