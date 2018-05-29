@@ -20,7 +20,7 @@ public class Koncm extends JPanel implements ActionListener {
 	
 	@Override
     public Dimension getPreferredSize() {
-        return new Dimension(1000, 1000);
+        return new Dimension(700, 900);
 	}
 
 	@Override

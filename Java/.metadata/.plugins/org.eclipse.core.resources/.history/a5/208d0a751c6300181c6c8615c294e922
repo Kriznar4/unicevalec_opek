@@ -1,0 +1,70 @@
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JPanel;
+
+public class Platno extends JPanel implements MouseMotionListener, MouseListener {
+	 private List<Lik> liki;
+	 private Odbijac odbijac;
+	 private Unicevalka unicevalka;
+	 private Boolean zacetek = true;
+	 
+	
+	 
+	public Platno() {
+		super();
+		this.setBackground(Color.white);
+	    addMouseMotionListener(this);
+	    liki = new ArrayList<Lik>();
+        odbijac = new Odbijac(300, 820, 50, 20);
+        liki.add(odbijac);
+        unicevalka = new Unicevalka(350, 813,7);
+        liki.add(unicevalka);
+        
+	}
+
+    public void dodajLik(Lik lik) {
+        liki.add(lik);
+    }
+    
+    public void brisi() {
+        liki.clear();
+        repaint();
+    }
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for(Lik lik: this.liki) {
+            lik.narisiSe(g);
+        }
+	}
+	
+	@Override
+    public Dimension getPreferredSize() {
+        return new Dimension(700, 900);
+	}
+	
+	public void mouseMoved(MouseEvent e) {
+		odbijac.x = e.getX() - 50;
+		if (true) {
+			unicevalka.x = e.getX();
+		}
+		repaint();
+	}
+	
+	public void mouseClicked(MouseEvent e){
+		zacetek = false;
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

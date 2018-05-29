@@ -1,0 +1,57 @@
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JPanel;
+
+public class Platno extends JPanel implements MouseMotionListener {
+	 private List<Lik> liki;
+	 private Odbijac odbijac;
+	 
+	
+	 
+	public Platno() {
+		super();
+		this.setBackground(Color.white);
+	    addMouseMotionListener(this);
+	    liki = new ArrayList<Lik>();
+        odbijac = new Odbijac(300, 820, 50, 20);
+        liki.add(odbijac);
+	}
+
+    public void dodajLik(Lik lik) {
+        liki.add(lik);
+    }
+    
+    public void brisi() {
+        liki.clear();
+        repaint();
+    }
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for(Lik lik: this.liki) {
+            lik.narisiSe(g);
+        }
+	}
+	
+	@Override
+    public Dimension getPreferredSize() {
+        return new Dimension(700, 900);
+	}
+	
+	public void mouseMoved(MouseEvent e) {
+		odbijac.x = e.getX();
+		repaint();
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
