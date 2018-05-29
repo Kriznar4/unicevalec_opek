@@ -29,7 +29,6 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
         unicevalka = new Unicevalka(350, 813,7, this);
         liki.add(unicevalka);
         animacijskiTimer = new Timer(20, this);
-        animacijskiTimer.start();
 	}
 
     public void dodajLik(Lik lik) {
@@ -66,13 +65,13 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
 	
 	@Override	
 	public void mouseClicked(MouseEvent e){
-
+		zacetek = false;
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		zacetek = false;
 	}
 
 	@Override
@@ -89,13 +88,12 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		zacetek = false;
-		unicevalka.izstrel(e.getX());
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		zacetek = false;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

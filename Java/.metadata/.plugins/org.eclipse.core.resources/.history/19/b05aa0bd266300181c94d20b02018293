@@ -66,13 +66,15 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
 	
 	@Override	
 	public void mouseClicked(MouseEvent e){
-
+		zacetek = false;
+		unicevalka.izstrel(e.getX());
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		zacetek = false;
+		unicevalka.izstrel(e.getX());
 	}
 
 	@Override
@@ -95,7 +97,8 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		zacetek = false;
+		unicevalka.izstrel(e.getX());
 	}
 	
 	public void actionPerformed(ActionEvent e) {

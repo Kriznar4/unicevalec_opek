@@ -5,8 +5,8 @@ public class Unicevalka extends Lik{
 	private int r; 
 	private Platno platno;
 	int hitrost = 7;
-	int premik_x = -1;
-	int premik_y = -1;
+	int premik_x = 1;
+	int premik_y = 1;
 	double alfa;
 	int dx;
 	int dy;

@@ -5,8 +5,8 @@ public class Unicevalka extends Lik{
 	private int r; 
 	private Platno platno;
 	int hitrost = 7;
-	int premik_x = -1;
-	int premik_y = -1;
+	int premik_x = 1;
+	int premik_y = 1;
 	double alfa;
 	int dx;
 	int dy;
@@ -33,7 +33,7 @@ public class Unicevalka extends Lik{
     
 	public void izstrel(int x) {
 		if (x < 350) {
-			premik_x *= -1;
+			premik_y *= -1;
 		}
 		alfa = Math.atan(Math.abs(262)/Math.abs(350 - x));
 		dx = (int) (Math.cos(alfa)*hitrost);
