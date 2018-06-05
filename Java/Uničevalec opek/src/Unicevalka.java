@@ -2,14 +2,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Unicevalka extends Lik{
-	private int r; 
+	public int r; 
 	private Platno platno;
-	int hitrost = 7;
+	int hitrost = 10;
 	int premik_x = -1;
 	int premik_y = -1;
 	double alfa;
-	int dx;
-	int dy;
+	public int dx;
+	public int dy;
     
     public Unicevalka(int x, int y, int r, Platno platno) {
     	super(x,y);
@@ -35,9 +35,12 @@ public class Unicevalka extends Lik{
 		if (x < 350) {
 			premik_x *= -1;
 		}
-		alfa = Math.atan(Math.abs(262)/Math.abs(350 - x));
+		alfa = Math.atan(Math.abs(262)*1.0/Math.abs(350 - x));
 		dx = (int) (Math.cos(alfa)*hitrost);
 		dy = (int) (Math.sin(alfa)*hitrost);
+		//System.out.println(x + " in alfa  " + alfa);
 	}
-
+	
+	
+	
 }

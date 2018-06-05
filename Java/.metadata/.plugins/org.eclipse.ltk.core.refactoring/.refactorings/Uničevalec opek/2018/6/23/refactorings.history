@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;Opeka.platno&apos; in &apos;Opeka&apos;&#x0D;&#x0A;- Original project: &apos;Uničevalec opek&apos;&#x0D;&#x0A;- Original element: &apos;Opeka.platno&apos;&#x0D;&#x0A;- Getter method name: &apos;getPlatno&apos;&#x0D;&#x0A;- Setter method name: &apos;setPlatno&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;platno&apos;" flags="589830" getter="getPlatno" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;{Opeka.java[Opeka^platno" insertion="1" setter="setPlatno" stamp="1528181003002" version="1.0" visibility="1"/>
+</session>

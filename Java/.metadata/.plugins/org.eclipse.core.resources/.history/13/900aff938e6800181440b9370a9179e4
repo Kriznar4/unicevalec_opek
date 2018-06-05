@@ -1,0 +1,22 @@
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Opeka extends Lik{
+	private int x; 
+	private int y;
+	private Platno platno;
+	
+	public Opeka(int x, int y, Platno platno){
+		super(x, y);
+		this.platno = platno;
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public void narisiSe(Graphics g) {
+		// TODO Auto-generated method stub
+        g.setColor(Color.BLUE);
+        g.drawRect(x, y, 60, 20); 
+	}
+}

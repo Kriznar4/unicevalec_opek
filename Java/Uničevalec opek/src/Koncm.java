@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ public class Koncm extends JPanel implements ActionListener {
 	public Koncm(Okno okno) {
 		super();
 		this.okno = okno;
+		this.setBackground(Color.white);
 		gumb1 = new JButton("Ponovno igraj");
 		add(gumb1);
 		gumb1.addActionListener(this);
