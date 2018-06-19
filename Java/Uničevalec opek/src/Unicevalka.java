@@ -4,7 +4,7 @@ import java.awt.Graphics;
 public class Unicevalka extends Lik{
 	public int r; 
 	private Platno platno;
-	int hitrost = 10;
+	int hitrost = 6;
 	int premik_x = -1;
 	int premik_y = -1;
 	double alfa;
