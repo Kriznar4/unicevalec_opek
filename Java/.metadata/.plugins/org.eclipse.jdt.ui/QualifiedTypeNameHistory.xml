@@ -16,4 +16,5 @@
 <fullyQualifiedTypeName name="java.awt.geom.Ellipse2D"/>
 <fullyQualifiedTypeName name="java.awt.geom.Area"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 </qualifiedTypeNameHistroy>

@@ -9,32 +9,37 @@ import javax.swing.JPanel;
 public class Okno extends JFrame {
 	private Platno platno;
 	private Zacm zacm;
-	private Koncm koncm;
+	public Koncm koncm;
 	
 	public Okno() {
 		super();
 		setLayout(new BorderLayout());
-		Zacm zacm = new Zacm(this);
-		Koncm koncm = new Koncm(this);
+		zacm = new Zacm(this);
+		koncm = new Koncm(this);
 		add(zacm, BorderLayout.NORTH);
 		add(koncm, BorderLayout.SOUTH);
 		//zacm.setVisible(false);
 		koncm.setVisible(false);
-		platno = new Platno(this);
-		add(platno, BorderLayout.SOUTH);
-		platno.setVisible(false);
+		//platno.setVisible(false);
 		//zacm.setVisible(true);
 
 	}
 	
 	public void pokaziPlatno(JPanel kateri){
 		kateri.setVisible(false);
+		kateri.invalidate();
+		platno = new Platno(this);
+		add(platno, BorderLayout.SOUTH);
 		platno.setVisible(true);
+		platno.invalidate();
 	}
 	
 	public void pokazikonMeni(){
+		add(koncm, BorderLayout.SOUTH);
 		platno.setVisible(false);
+		platno.invalidate();
 		koncm.setVisible(true);
+		koncm.invalidate();
 	}
 	
     public static void main(String[] args) {

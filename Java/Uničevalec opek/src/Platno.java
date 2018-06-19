@@ -167,6 +167,11 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
             if  ((unicevalka.y + unicevalka.r - unicevalka.dy*unicevalka.premik_y) > 900){
             	//System.out.println("KONEC");
             }
+            if (unicevalka.y > 920) {
+            	animacijskiTimer.stop();
+            	okno.pokazikonMeni();
+            	okno.koncm.info.setText("Bravo, zelo si slab!");
+            }
             int premikX = unicevalka.dx*unicevalka.premik_x;
         	int premikY = unicevalka.dy*unicevalka.premik_y;
             unicevalka.premakni(premikX, premikY);
@@ -175,8 +180,9 @@ public class Platno extends JPanel implements MouseMotionListener, MouseListener
             	repaint();
             }
             else{
-            	//animacijskiTimer.stop();
+            	animacijskiTimer.stop();
             	okno.pokazikonMeni();
+            	okno.koncm.info.setText("Bravo, zelo si dober!");
             }
             return;
         }
